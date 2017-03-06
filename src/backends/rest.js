@@ -1,8 +1,5 @@
-/* eslint-disable no-console */
-
 // I prefer axios to fetch
 import axios from 'axios'
-import _ from 'lodash'
 
 import { apiUrl } from '../constants'
 
@@ -10,24 +7,24 @@ import { apiUrl } from '../constants'
 class RestBackend {
   // ReST CRUD backend
 
-  constructor (domain) {
-    console.log('Backend being born')
+  constructor (domain, opts = {}) {
     this.apiDomain = domain
     this.defaultOpts = {
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json'
+        'Accept': 'application/json'
       }
     }
-    this.opts = {}
+    this.opts = Object.assign({}, this.defaultOpts, opts)
   }
 
   setConfig (opts) {
     // store token and user
-    this.opts = Object.assign({}, this.defaultOpts, opts)
+    this.opts = Object.assign({}, this.opts, opts)
   }
 
   setAuthToken (token) {
+    console.log(token)
     this.opts =  this.setConfig({headers: {"Authorization": `Bearer ${token}`}})
   }
 
@@ -48,10 +45,10 @@ class RestBackend {
           console.log(error.response.headers)
         } else {
           // Something happened in setting up the request that triggered an Error
-          console.log('Error', error.message)
+          console.log('Unknown Error:', error.message)
         }
-        console.log(error.config)
-        return false
+        console.log('Config:', error.config)
+        throw new Error('Request failed')
       })
     }
 

@@ -1,5 +1,4 @@
 'use strict'
-import _ from 'lodash'
 import jwt from 'jwt-simple'
 import { observable, computed } from 'mobx'
 import { client } from '../backends'
@@ -10,8 +9,12 @@ class UserStore {
   constructor (client) {
     this.SESSION_KEY = 'profile'
     this.profile = null
-    this.jwtk = ''
+    this.jwtk = 'super secret'
     this.apiClient = client
+  }
+
+  @computed get isAuthenticated () {
+    return this.profile !== null
   }
 
   login (creds) {
@@ -19,10 +22,7 @@ class UserStore {
     .then(data => {
       this.storeSession(data.token)
     })
-  }
-
-  @computed get isAuthenticated () {
-    return this.profile !== null
+    .catch(console.log) // We should send some feedback here
   }
 
   storeSession (sessionToken) {
@@ -36,8 +36,12 @@ class UserStore {
     if (sessionToken) {
       this.storeSession(sessionToken)
     } else {
-      this.profile = localStorage.getItem(this.SESSION_KEY)
-      this.apiClient.setAuthToken(this.profile.sessionToken)
+      try {
+        this.profile = localStorage.getItem(this.SESSION_KEY)
+        this.apiClient.setAuthToken(this.profile.sessionToken)
+      } catch(e) {
+        throw new Error("No Profile found")
+      }
     }
   }
 

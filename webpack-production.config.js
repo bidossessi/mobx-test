@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const buildPath = path.resolve(__dirname, 'public');
@@ -12,56 +13,51 @@ const config = {
   entry: [
     // 'babel-polyfill',
     // polyfill for older browsers
-
-    'react-hot-loader/patch',
-    // activate HMR for React
-
-    'webpack-dev-server/client?http://localhost:3000',
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
-
-    'webpack/hot/only-dev-server',
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
-
     path.join(__dirname, 'src', 'index'),
   ],
   //Config options on how to interpret requires imports
   resolve: {
     extensions: [".js", ".json", ".scss"],
   },
-
-  //Server Configuration options
-  devServer:{
-    historyApiFallback: true,
-    hot: true,        //Live-reload
-    inline: true,
-    port: 3000,        //Port Number
-    host: 'localhost',  //Change to '0.0.0.0' for external facing server
-    publicPath: reloadPath,
-    contentBase: buildPath,
-  },
-  devtool: 'inline-source-map',
+  //Render source-map file for final build
+  devtool: 'cheap-module-source-map',
   context: srcPath,
   output: {
-    publicPath: reloadPath,
+    publicPath: '/',    //Path of output file
     path: buildPath,    //Path of output file
     filename: 'app.js',
   },
+  // Production optimization
+  // I still need to figure out the whole chunks business yet
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    // enable HMR globally
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: 'index.template.ejs',
-      title: 'JWT test - DEV',
+      title: 'JWT test - PROD',
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates
-    new BundleTracker({filename: './webpack-stats.json'}),
+    new BundleTracker({filename: './webpack-stats-prod.json'}),
+    new BundleAnalyzerPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true
+      },
+      compress: {
+        sequences: true,
+        dead_code: true,
+        conditionals: true,
+        booleans: true,
+        unused: true,
+        if_return: true,
+        join_vars: true,
+        drop_console: true,
+      },
+      comments: false
+    }),
     new webpack.DefinePlugin({
         "process.env": {
-            NODE_ENV: JSON.stringify("development"),
+            NODE_ENV: JSON.stringify("production"),
         },
     }),
   ],
