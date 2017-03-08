@@ -7,6 +7,10 @@ Still to do (in order):
 * Bootstrap integration (webpack CDN)
 * style preprocessing (SCSS + webpack post-css)
 * integrate l18n (don't yet know what is recommended)
+* React-router best practices and optimization
+* backend best practices (I just use plain [axios](https://github.com/mzabriskie/axios) for now)
+* general security best practices
+* bundle optimization best practices (chunking, selective imports, etc)
 
 ## To get started
 The usual suspects:
