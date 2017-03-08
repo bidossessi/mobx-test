@@ -1,20 +1,20 @@
 'use strict'
 import jwt from 'jwt-simple'
-import { observable, computed } from 'mobx'
+import { observable, computed, autorun } from 'mobx'
 import { client } from '../backends'
 
 class UserStore {
-  @observable profile;
+  @observable profile = {};
 
   constructor (client) {
     this.SESSION_KEY = 'profile'
-    this.profile = null
     this.jwtk = 'super secret'
     this.apiClient = client
+    autorun(() => console.log(this.profile))
   }
 
   @computed get isAuthenticated () {
-    return this.profile !== null
+    return this.profile !== null && this.profile.hasOwnProperty('sessionToken')
   }
 
   login (creds) {
@@ -38,8 +38,8 @@ class UserStore {
   }
 
   _deleteSession () {
-    return localStorage.removeItem(this.SESSION_KEY)
-    this.profile = null
+    localStorage.removeItem(this.SESSION_KEY)
+    this.profile = {}
   }
 
   useLocalProfile (sessionToken) {

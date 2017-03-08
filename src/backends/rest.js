@@ -8,6 +8,7 @@ class RestBackend {
   // ReST CRUD backend
 
   constructor (domain, opts = {}) {
+    console.log("Backend init")
     this.apiDomain = domain
     this.defaultOpts = {
       headers: {
@@ -15,7 +16,7 @@ class RestBackend {
         'Accept': 'application/json'
       }
     }
-    this.opts = Object.assign({}, this.defaultOpts, opts)
+    this.opts = Object.assign({}, this.defaultOpts)
   }
 
   setConfig (opts) {
@@ -24,8 +25,9 @@ class RestBackend {
   }
 
   setJWTToken (token) {
-    console.log(token)
-    this.opts =  this.setConfig({headers: {"Authorization": `Bearer ${token}`}})
+    if (token) {
+      this.opts =  this.setConfig({headers: {"Authorization": `Bearer ${token}`}})
+    }
   }
 
   resetHeaders () {
@@ -52,6 +54,7 @@ class RestBackend {
           console.log('Unknown Error:', error.message)
         }
         console.log('Config:', error.config)
+        console.log('opts:', this.getConfig())
         throw new Error('Request failed')
       })
     }
