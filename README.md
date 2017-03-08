@@ -2,6 +2,11 @@
 Experimenting with Mobx.
 
 Working soo far: JWT authentication to an ExpressJS api running on port 3001
+Still to do (in order):
+* React UI unit testing best practices
+* Bootstrap integration (webpack CDN)
+* style preprocessing (SCSS + webpack post-css)
+* integrate l18n (don't yet know what is recommended)
 
 ## To get started
 The usual suspects:

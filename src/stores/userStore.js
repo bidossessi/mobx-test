@@ -58,6 +58,6 @@ class UserStore {
 }
 // The singleton variable
 const userStore = new UserStore(axiosClient)
-
-export { UserStore }
 export default userStore
+// We export the class as well for unittesting
+export { UserStore }

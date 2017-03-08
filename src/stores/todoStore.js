@@ -114,6 +114,6 @@ class Todo {
 
 // The singleton variable
 const todoStore = new TodoStore(axiosClient)
-
 export default todoStore
+// We export the classes as well for unittesting
 export { TodoStore, Todo }
