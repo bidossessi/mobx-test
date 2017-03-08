@@ -1,15 +1,20 @@
 # mobx-test
 Experimenting with Mobx.
 
-Working soo far: JWT authentication to an ExpressJS api running on port 3001.
+Working soo far:
+* JWT authentication to an ExpressJS api running on port 3001.
+* basic Mobx integration
+* basic store/backend unittesting
+* generally admitted project structuration best practices
 
 Still to do (in order):
 * React UI unit testing best practices
+* Mobx best practices
 * Bootstrap integration (webpack CDN)
 * style preprocessing (SCSS + webpack post-css)
 * integrate l18n (don't yet know what is recommended)
 * React-router best practices and optimization
-* backend best practices (I just use plain [axios](https://github.com/mzabriskie/axios) for now)
+* backend/store best practices (I just use plain [axios](https://github.com/mzabriskie/axios) for now)
 * general security best practices
 * bundle optimization best practices (chunking, selective imports, etc)
 
