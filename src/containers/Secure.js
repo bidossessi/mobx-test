@@ -2,11 +2,8 @@ import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { browserHistory } from 'react-router'
 
-import Secure from './Secure'
-import ProfileMenu from '../components/profile'
-
 @inject("userStore") @observer
-class Layout extends React.Component {
+class Secure extends React.Component {
   // This class could handle top-level widgets compositions
   // such as menus, master css, etc
   constructor(props) {
@@ -30,15 +27,5 @@ class Layout extends React.Component {
       }
     }
   }
-
-  render() {
-    return(
-      <div>
-        <div><ProfileMenu /></div>
-        <hr/>
-        {this.props.children}
-      </div>)
-  }
 }
-
-export default Layout
+export default Secure

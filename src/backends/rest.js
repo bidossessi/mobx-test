@@ -23,9 +23,13 @@ class RestBackend {
     this.opts = Object.assign({}, this.opts, opts)
   }
 
-  setAuthToken (token) {
+  setJWTToken (token) {
     console.log(token)
     this.opts =  this.setConfig({headers: {"Authorization": `Bearer ${token}`}})
+  }
+
+  resetHeaders () {
+    this.opts = Object.assign({}, this.defaultOpts)
   }
 
   getConfig () {
@@ -35,7 +39,7 @@ class RestBackend {
   _run (opts) {
     return axios(opts)
       .then(response => {
-        console.log(response)
+        // console.log(response)
         return response.data
       })
       .catch(error => {

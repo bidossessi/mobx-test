@@ -8,7 +8,7 @@ import {
 
 import Layout from '../containers/Layout'
 import Home from '../containers/Home'
-import Login from '../containers/Login'
+import {Login} from '../components/login'
 
 
 const Routes = (
