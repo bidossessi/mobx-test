@@ -8,19 +8,24 @@ The usual suspects:
 ```
 npm install
 ```
-To run the HRM webpack server in development mode
+
+### To run the HRM webpack server in development mode
 ```
 npm start
 ```
-To build the client in the `public` folder
+
+### To build the client in the `public` folder
 ```
 npm run build
 ```
-To run the linter
+This will also attempt to launch a bundle size tracker on port 8888
+
+### To run the linter
 ```
 npm run lint
 ```
-To run the test suite
+
+### To run the test suite
 ```
 npm run test
 ```

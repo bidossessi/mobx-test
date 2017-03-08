@@ -1,14 +1,14 @@
-const webpack = require('webpack');
-const BundleTracker = require('webpack-bundle-tracker');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const buildPath = path.resolve(__dirname, 'public');
-const srcPath = path.resolve(__dirname, 'src');
-const reloadPath = '/';
-const nodeModulesPath = path.resolve(__dirname, 'node_modules');
+const webpack = require('webpack')
+const BundleTracker = require('webpack-bundle-tracker')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
+const buildPath = path.resolve(__dirname, 'public')
+const srcPath = path.resolve(__dirname, 'src')
+const reloadPath = '/'
+const nodeModulesPath = path.resolve(__dirname, 'node_modules')
 
 const config = {
-  //Entry points to the project
+  // Entry points to the project
   entry: [
     // 'babel-polyfill',
     // polyfill for older browsers
@@ -26,18 +26,18 @@ const config = {
 
     path.join(__dirname, 'src', 'index'),
   ],
-  //Config options on how to interpret requires imports
+  // Config options on how to interpret requires imports
   resolve: {
-    extensions: [".js", ".json", ".scss"],
+    extensions: ['.js', '.json', '.scss'],
   },
 
-  //Server Configuration options
-  devServer:{
+  // Server Configuration options
+  devServer: {
     historyApiFallback: true,
-    hot: true,        //Live-reload
+    hot: true,        // Live-reload
     inline: true,
-    port: 3000,        //Port Number
-    host: 'localhost',  //Change to '0.0.0.0' for external facing server
+    port: 3000,        // Port Number
+    host: 'localhost',  // Change to '0.0.0.0' for external facing server
     publicPath: reloadPath,
     contentBase: buildPath,
   },
@@ -45,7 +45,7 @@ const config = {
   context: srcPath,
   output: {
     publicPath: reloadPath,
-    path: buildPath,    //Path of output file
+    path: buildPath,    // Path of output file
     filename: 'app.js',
   },
   plugins: [
@@ -60,21 +60,21 @@ const config = {
     // prints more readable module names in the browser console on HMR updates
     new BundleTracker({filename: './webpack-stats.json'}),
     new webpack.DefinePlugin({
-        "process.env": {
-            NODE_ENV: JSON.stringify("development"),
-        },
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      },
     }),
   ],
   module: {
     loaders: [
       {
-        //React-hot loader and
+        // React-hot loader and
         test: /\.js$/,
         loaders: ['babel-loader'],
         exclude: [nodeModulesPath],
       },
     ],
   },
-};
+}
 
-module.exports = config;
+module.exports = config
