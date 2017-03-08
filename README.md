@@ -10,6 +10,8 @@ npm install
 ```
 
 ### To run the HRM webpack server in development mode
+
+start the [server](https://github.com/bidossessi/mobx-test-server) in another terminal, then
 ```
 npm start
 ```
