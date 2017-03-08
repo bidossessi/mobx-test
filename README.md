@@ -11,7 +11,7 @@ Still to do (in order):
 * React UI unit testing best practices
 * Mobx best practices
 * Bootstrap integration (webpack CDN)
-* [tcomb form](https://github.com/gcanti/tcomb-form)? (I've used it before. It could help)
+* [tcomb form](https://github.com/gcanti/tcomb-form)? (I've used it before. It could help) or [mobx-forms](https://github.com/foxhound87/mobx-react-form) (might make more sense and less boilerplate)
 * style preprocessing (SCSS + webpack post-css)
 * integrate l18n (don't yet know what is recommended)
 * React-router best practices and optimization
