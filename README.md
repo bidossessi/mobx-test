@@ -16,3 +16,12 @@ To build the client in the `public` folder
 ```
 npm run build
 ```
+To run the linter
+```
+npm run lint
+```
+To run the test suite
+```
+npm run test
+```
+

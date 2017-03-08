@@ -6,7 +6,6 @@ class RestBackend {
   // ReST CRUD backend
 
   constructor (domain, opts = {}) {
-    console.log('Backend init')
     this.apiDomain = domain
     this.defaultOpts = {
       headers: {

@@ -45,7 +45,7 @@ class TodoStore {
   }
 
   addTodo (task) {
-    this.apiClient.post('todos', {task, completed: false})
+    return this.apiClient.post('todos', {task, completed: false})
     .then(json => {
       const todo = new Todo(this, json.id, json.task, json.completed)
       this.todos.push(todo)
@@ -54,7 +54,7 @@ class TodoStore {
 
   removeTodo (todo) {
     this.todos.splice(this.todos.indexOf(todo), 1)
-    this.apiClient.delete('todos', todo.id)
+    return this.apiClient.delete('todos', todo.id)
   }
 
   saveTodo (todo) {
