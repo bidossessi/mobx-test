@@ -1,7 +1,8 @@
 # mobx-test
 Experimenting with Mobx.
 
-Working soo far: JWT authentication to an ExpressJS api running on port 3001
+Working soo far: JWT authentication to an ExpressJS api running on port 3001.
+
 Still to do (in order):
 * React UI unit testing best practices
 * Bootstrap integration (webpack CDN)
