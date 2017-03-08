@@ -35,7 +35,7 @@ npm start
 ```
 npm run build
 ```
-This will also attempt to launch a bundle size tracker on port 8888
+This will also attempt to launch a [bundle size tracker](https://github.com/th0r/webpack-bundle-analyzer) on port 8888
 
 ### To run the linter
 ```
