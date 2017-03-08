@@ -3,24 +3,24 @@ import React from 'react'
 import Input from './Input'
 
 class LoginForm extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       formData: {},
       errorData: {},
       realForm: [],
-    };
-    this.doUpdate = this.doUpdate.bind(this);
-    this.doSubmit = this.doSubmit.bind(this);
+    }
+    this.doUpdate = this.doUpdate.bind(this)
+    this.doSubmit = this.doSubmit.bind(this)
   }
 
-  doUpdate(field) {
-    this.setState({formData: Object.assign({}, this.state.formData, field)});
+  doUpdate (field) {
+    this.setState({formData: Object.assign({}, this.state.formData, field)})
   }
 
-  doSubmit(event) {
-    this.props.handleSubmit(this.state.formData);
-    event.preventDefault();
+  doSubmit (event) {
+    this.props.handleSubmit(this.state.formData)
+    event.preventDefault()
   }
 
   render () {

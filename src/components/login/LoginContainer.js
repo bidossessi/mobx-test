@@ -3,15 +3,12 @@ import { observer, inject } from 'mobx-react'
 
 import LoginForm from './LoginForm'
 
-
-//inject and use the store here
-const Login = inject("userStore")(observer( ({ userStore }) => {
-
-  const doLogin = (creds) => {userStore.login(creds)}
+// inject and use the store here
+const Login = inject('userStore')(observer(({ userStore }) => {
+  const doLogin = (creds) => { userStore.login(creds) }
 
   return <LoginForm handleSubmit={doLogin}/>
-
-} ))
+}))
 // @inject("userStore") @observer
 // class Login extends React.Component {
 

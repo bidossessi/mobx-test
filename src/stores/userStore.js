@@ -1,15 +1,16 @@
-'use strict'
+/* eslint-disable no-alert, no-console */
 import jwt from 'jwt-simple'
 import { observable, computed, autorun } from 'mobx'
-import { client } from '../backends'
+import { axiosClient } from '../backends'
+import { jwtk } from '../constants'
 
 class UserStore {
   @observable profile = {};
 
   constructor (client) {
     this.SESSION_KEY = 'profile'
-    this.jwtk = 'super secret'
     this.apiClient = client
+    this.profile = {}
     autorun(() => console.log(this.profile))
   }
 
@@ -18,7 +19,7 @@ class UserStore {
   }
 
   login (creds) {
-    this.apiClient.post("login", creds)
+    return this.apiClient.post('login', creds)
     .then(data => {
       this._storeSession(data.token)
     })
@@ -31,10 +32,10 @@ class UserStore {
   }
 
   _storeSession (sessionToken) {
-      const decoded = jwt.decode(sessionToken, this.jwtk)
-      this.profile = Object.assign({}, decoded, {sessionToken})
-      localStorage.setItem(this.SESSION_KEY, this.profile)
-      this.apiClient.setJWTToken(this.profile.sessionToken)
+    const decoded = jwt.decode(sessionToken, jwtk)
+    this.profile = Object.assign({}, decoded, {sessionToken})
+    localStorage.setItem(this.SESSION_KEY, this.profile)
+    this.apiClient.setJWTToken(this.profile.sessionToken)
   }
 
   _deleteSession () {
@@ -49,15 +50,14 @@ class UserStore {
       try {
         this.profile = localStorage.getItem(this.SESSION_KEY)
         this.apiClient.setJWTToken(this.profile.sessionToken)
-      } catch(e) {
-        throw new Error("No Profile found")
+      } catch (e) {
+        throw new Error('No Profile found')
       }
     }
   }
-
 }
 // The singleton variable
-const userStore = new UserStore(client)
+const userStore = new UserStore(axiosClient)
 
 export { UserStore }
 export default userStore

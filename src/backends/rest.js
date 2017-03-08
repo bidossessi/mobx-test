@@ -1,14 +1,12 @@
+/* eslint-disable no-alert, no-console */
 // I prefer axios to fetch
 import axios from 'axios'
-
-import { apiUrl } from '../constants'
-
 
 class RestBackend {
   // ReST CRUD backend
 
   constructor (domain, opts = {}) {
-    console.log("Backend init")
+    console.log('Backend init')
     this.apiDomain = domain
     this.defaultOpts = {
       headers: {
@@ -26,7 +24,7 @@ class RestBackend {
 
   setJWTToken (token) {
     if (token) {
-      this.opts =  this.setConfig({headers: {"Authorization": `Bearer ${token}`}})
+      this.opts = this.setConfig({headers: {'Authorization': `Bearer ${token}`}})
     }
   }
 
@@ -57,7 +55,7 @@ class RestBackend {
         console.log('opts:', this.getConfig())
         throw new Error('Request failed')
       })
-    }
+  }
 
   all (resource, params = {}) {
     const opts = Object.assign({}, this.getConfig(), {
@@ -97,7 +95,7 @@ class RestBackend {
     return this._run(opts)
   }
 
-  delete (itemId, params = {}) {
+  delete (resource, itemId, params = {}) {
     const opts = Object.assign({}, this.getConfig(), {
       url: [this.apiDomain, resource, itemId].join('/'),
       params,

@@ -1,10 +1,10 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
+import React from 'react'
+import { observer } from 'mobx-react'
+import DevTools from 'mobx-react-devtools'
 
 @observer
 class App extends React.Component {
-  render() {
+  render () {
     return (
       <div>
         <button onClick={this.onReset}>
@@ -12,12 +12,12 @@ class App extends React.Component {
         </button>
         <DevTools />
       </div>
-    );
+    )
   }
 
   onReset = () => {
-    this.props.appState.resetTimer();
+    this.props.appState.resetTimer()
   }
-};
+}
 
-export default App;
+export default App

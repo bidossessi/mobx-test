@@ -1,8 +1,8 @@
 import React from 'react'
 
 class Input extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       initialized: false,
       value: '',
@@ -13,19 +13,19 @@ class Input extends React.Component {
   }
 
   doChange (event) {
-    this.setState({value: event.target.value});
-    event.preventDefault();
+    this.setState({value: event.target.value})
+    event.preventDefault()
   }
 
   doResult (event) {
     let obj = {}
-    obj[this.props.name] = event.target.value;
+    obj[this.props.name] = event.target.value
     this.props.handleResult(obj)
-    event.preventDefault();
+    event.preventDefault()
   }
 
   render () {
-    return(
+    return (
       <label>
           {this.props.label}:
           <input
@@ -37,7 +37,6 @@ class Input extends React.Component {
       </label>
     )
   }
-
 }
 
 Input.propTypes = {

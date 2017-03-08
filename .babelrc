@@ -12,6 +12,17 @@
         "react-hot-loader/babel"
       ]
     },
+    "test": {
+      "presets": [
+        ["es2015"],
+        "stage-2",
+        "react"
+      ],
+      "plugins": [
+        "transform-decorators-legacy",
+        "transform-class-properties"
+      ]
+    },
     "production": {
       "presets": ["es2015", "react", "react-optimize"],
       "plugins": ["transform-decorators-legacy", "transform-class-properties"]
